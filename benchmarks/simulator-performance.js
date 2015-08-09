@@ -6,17 +6,16 @@ const individual = [
   (entity, api, currentFrame) => {
     api.setVelocity(entity, {x: 3, y: 0});
   }
-]
-
-const individuals = [individual];
+];
 
 const entity = new Entity(individual, {x: 0, y: 0}, [], true);
 
+const entities = [entity];
 
 const RUNS = 1000;
 const FRAMES = 10;
 
-function time(f) {
+function time (f) {
   const startTime = Date.now();
 
   f();
@@ -27,17 +26,18 @@ function time(f) {
 }
 
 function testSimulator () {
-  simulateWorld(individuals, FRAMES, []);
+  simulateWorld(entities, FRAMES, []);
 }
 
 function runBenchmark () {
   return time(testSimulator);
 }
-const runTimes = _.chain(RUNS).range().map(runBenchmark).value();
 
 function mean (numbers) {
   return _.sum(numbers) / numbers.length;
-}
+};
 
-console.log(JSON.stringify({results: mean(Array.from(runTimes))}));
+const runTimes = _.chain(RUNS).range().map(runBenchmark).value();
+
+console.log(JSON.stringify({results: mean(runTimes)}));
 
