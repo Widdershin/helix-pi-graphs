@@ -1,4 +1,8 @@
 class FetchAndBenchmark
+  def self.run
+    new.call
+  end
+
   def call
     FetchCommits.new.call
 

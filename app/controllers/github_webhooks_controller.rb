@@ -2,7 +2,7 @@ class GithubWebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :push
 
   def push
-    FetchAndBenchmarkJob.perform_later
+    FetchAndBenchmark.delay.run
 
     render text: 'Yay!'
   end
