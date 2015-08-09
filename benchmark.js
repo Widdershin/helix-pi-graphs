@@ -14,8 +14,8 @@ var fitnessScenarios = {
         }
       },
 
-      startPosition(name) {
-        return(this.initialPositions[name]);
+      startPosition: function (name) {
+        return this.initialPositions[name];
       },
 
       expectedPositions: {
@@ -46,8 +46,8 @@ var fitnessScenarios = {
         }
       },
 
-      startPosition(name) {
-        return(this.initialPositions[name]);
+      startPosition: function (name) {
+        return this.initialPositions[name];
       },
 
       expectedPositions: {
