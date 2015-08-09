@@ -1,11 +1,19 @@
 class BenchmarkCommit
   def initialize(commit)
     @commit = commit
-    @repo = HelixPiRepo.new
   end
 
   def call
-    repo.checkout(commit.hash)
+    repo.setup
+    repo.checkout(@commit.sha)
+
+    results = `babel-node --harmony benchmark.js`
+
+    @commit.commit_benchmarks.create!(:data => JSON.parse(results))
+  end
+
+  def repo
+    @repo ||= HelixPiRepo.new
   end
 end
 

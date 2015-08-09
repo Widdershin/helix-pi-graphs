@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'graphs#index'
 
   post '/hooks/github/push' => 'github_webhooks#push'
+
+  get 'commit_benchmarks' => 'commit_benchmarks#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
