@@ -1,4 +1,4 @@
-var helixPi = require('./helix-pi');
+var helixPi = require('./helix-pi/helix');
 
 var fitnessScenarios = {
   participants: ['swordsunit', 'ball'],
