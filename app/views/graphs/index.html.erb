@@ -8,4 +8,6 @@
   <%= BuildStatusPresenter.new(CommitBenchmark.last).to_html %>
 </header>
 
-<%= line_chart '/commit_benchmarks', min: 0, max: 1000, library: {title: 'Smarts (fitness)', curveType: 'none'} %>
+<% GetBenchmarks.new.call.each do |bmark| %>
+  <%= line_chart "/commit_benchmarks?benchmark=#{bmark}", min: 0, max: 1000, library: {title: bmark, curveType: 'none'} %>
+<% end %>

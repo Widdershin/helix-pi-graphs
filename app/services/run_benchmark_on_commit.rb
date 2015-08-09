@@ -1,15 +1,11 @@
 require 'open3'
 
-class BenchmarkCommit
-  def initialize(commit)
-    @commit = commit
-  end
-
+class RunBenchmarkOnCommit < Struct.new(:benchmark, :commit)
   def call
     repo.setup
-    repo.checkout(@commit.sha)
+    repo.checkout(commit.sha)
 
-    Open3.popen2e('babel-node', 'benchmark.js') do |stdin, stdout_err, result|
+    Open3.popen2e('babel-node', benchmark) do |stdin, stdout_err, result|
       output_lines = []
 
       while line = stdout_err.gets
@@ -25,13 +21,16 @@ class BenchmarkCommit
         nil
       end
 
-      @commit.commit_benchmarks.create!(
+      commit.commit_benchmarks.create!(
+        :benchmark => benchmark,
         :output => output,
         :success => success,
         :data => data
       )
     end
   end
+
+  private
 
   def repo
     @repo ||= HelixPiRepo.new
