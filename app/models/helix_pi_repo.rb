@@ -1,8 +1,8 @@
 class HelixPiRepo
   def commits
     repo.checkout('master')
-
-    repo.log.since('4 weeks ago')
+    repo.fetch
+    repo.log.since('6 weeks ago')
   end
 
   def setup
