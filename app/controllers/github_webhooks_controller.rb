@@ -1,7 +1,7 @@
 class GithubWebhooksController < ApplicationController
-  protect_from_forgery except: :push
+  skip_before_action :verify_authenticity_token, only: :push
 
   def push
-    render status: 200
+    render text: 'It worked :)'
   end
 end
