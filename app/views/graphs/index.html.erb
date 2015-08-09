@@ -1,4 +1,11 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
-<h2>Smarts</h2>
-<%= line_chart '/commit_benchmarks', min: 0, max: 1000 %>
+<header>
+  <div class="title">
+    Helix Pi Benchmarks
+  </div>
+
+  <%= BuildStatusPresenter.new(CommitBenchmark.last).to_html %>
+</header>
+
+<%= line_chart '/commit_benchmarks', min: 0, max: 1000, library: {title: 'Smarts (fitness)'} %>

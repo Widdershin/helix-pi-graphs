@@ -1,3 +1,38 @@
 // Place all the styles related to the graphs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
+
+body {
+  font-family: 'Oxygen', sans-serif;
+}
+
+header {
+  .title {
+    float: left;
+    font-style: bold;
+  }
+
+  text-align: right;
+  margin-bottom: 10px;
+
+  background: #F0F0F0;
+  padding: 5px;
+  box-shadow: 0px 1px 2px lighten(black, 60%);
+}
+
+.build {
+  padding: 2px 4px;
+  margin: 1px;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+.passing {
+  background: lighten(limegreen, 10%);
+}
+
+.failing {
+  background: lighten(red, 10%);
+  color: white;
+}
