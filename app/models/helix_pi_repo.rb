@@ -7,7 +7,6 @@ class HelixPiRepo
     Dir.chdir 'helix-pi' do
       `git checkout master`
       `git fetch`
-      `npm install`
     end
   end
 

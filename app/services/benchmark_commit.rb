@@ -7,7 +7,7 @@ class BenchmarkCommit
     repo.setup
     repo.checkout(@commit.sha)
 
-    results = `babel-node --harmony benchmark.js`
+    results = `babel-node benchmark.js`
 
     @commit.commit_benchmarks.create!(:data => JSON.parse(results))
   end
