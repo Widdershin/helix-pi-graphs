@@ -5,7 +5,7 @@ class BuildStatusPresenter < Struct.new(:bench)
     return ht 'div', 'Push to run benchmarks' if bench.nil?
 
     ht 'div' do |ha|
-      ha.('span', 'Last Benchmark: ')
+      ha.('span', 'Last run: ')
       ha.('span', "#{small_sha} - #{created_at} ago", class: "build #{benchmark_status}")
     end
   end

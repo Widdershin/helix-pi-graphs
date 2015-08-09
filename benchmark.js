@@ -82,6 +82,8 @@ var fitnessScenarios = {
 
 var results = helixPi(fitnessScenarios, 100, 32);
 
-console.log(JSON.stringify({results: results.swordsunit[0].fitness.score}));
+var individual = results.swordsunit[0];
+
+console.log(JSON.stringify({results: individual.fitness.score || individual.fitness}));
 
 

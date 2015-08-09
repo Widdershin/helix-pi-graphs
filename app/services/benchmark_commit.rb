@@ -9,10 +9,15 @@ class BenchmarkCommit
     repo.setup
     repo.checkout(@commit.sha)
 
-    Open3.popen2e('babel-node benchmark.js') do |stdin, stdout_err, result|
-      success = result.value.success?
+    Open3.popen2e('babel-node', 'benchmark.js') do |stdin, stdout_err, result|
+      output_lines = []
 
-      output = stdout_err.read
+      while line = stdout_err.gets
+        output_lines << line
+      end
+
+      success = result.value.success?
+      output = output_lines.join("\n")
 
       data = if success
         JSON.parse(output)
