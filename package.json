@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "babel": "^5.8.21",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "helix-pi-benchmarks": "helix-pi/helix-pi-benchmarks"
   }
 }
