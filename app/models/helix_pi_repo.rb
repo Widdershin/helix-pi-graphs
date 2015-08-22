@@ -29,6 +29,6 @@ class HelixPiRepo
 
   def repo
     @repo ||= Git.open('./helix-pi', :log => Logger.new(STDOUT)) if File.directory?('./helix-pi/.git')
-    @repo ||= Git.clone('https://github.com/Widdershin/helix-pi.git', 'helix-pi')
+    @repo ||= Git.clone('https://github.com/helix-pi/helix-pi.git', 'helix-pi')
   end
 end
