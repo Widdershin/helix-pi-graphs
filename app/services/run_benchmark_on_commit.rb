@@ -2,6 +2,10 @@ require 'open3'
 
 class RunBenchmarkOnCommit < Struct.new(:benchmark, :commit)
   def call
+    commit_benchmark = commit.commit_benchmarks.create!(
+      :benchmark => benchmark
+    )
+
     repo.setup
     repo.checkout(commit.sha)
 
@@ -21,11 +25,11 @@ class RunBenchmarkOnCommit < Struct.new(:benchmark, :commit)
         nil
       end
 
-      commit.commit_benchmarks.create!(
-        :benchmark => benchmark,
+      commit_benchmark.update!(
+        :data => data,
         :output => output,
         :success => success,
-        :data => data
+        :completed_at => Time.now
       )
     end
   end

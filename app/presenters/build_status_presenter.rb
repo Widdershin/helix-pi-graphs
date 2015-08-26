@@ -1,12 +1,11 @@
 class BuildStatusPresenter < Struct.new(:bench)
-  delegate :created_at, :success?, :to => :bench
+  delegate :success?, :pending?, to: :bench
 
   def to_html
     return ht 'div', 'Push to run benchmarks' if bench.nil?
 
     ht 'div' do |ha|
-      ha.('span', 'Last run: ')
-      ha.('span', "#{small_sha} - #{created_at} ago", class: "build #{benchmark_status}")
+      ha.('span', "#{small_sha} - #{time_info}", class: "build #{benchmark_status}")
     end
   end
 
@@ -16,12 +15,22 @@ class BuildStatusPresenter < Struct.new(:bench)
     bench.commit.sha.slice(0, 6)
   end
 
-  def created_at
-    date_helper.time_ago_in_words(bench.created_at)
+  def time_info
+    if pending?
+      'In progress'
+    else
+      "#{completed_at} ago"
+    end
+  end
+
+  def completed_at
+    date_helper.time_ago_in_words(bench.completed_at)
   end
 
   def benchmark_status
-    if success?
+    if pending?
+      'pending'
+    elsif success?
       'passing'
     else
       'failing'
